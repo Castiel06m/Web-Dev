@@ -1,0 +1,117 @@
+.fb_logo{
+    height: 106px;
+    margin-bottom: -28px;
+}
+
+.main_container{
+    justify-content: center;
+    gap: 100px;
+    padding: 120px;
+    display: flex;
+}
+
+.left_block{
+    width: 400px;
+    text-align: left;
+}
+
+.left_block h2{
+    font-size: 28px;
+    font-weight: normal;
+    line-height: 32px;
+}
+
+.right_block{
+    text-align: center;
+}
+
+.login{
+    width: 380px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 
+        0 2px 4px rgba(0,0,0,0.1),
+        0 8px 16px rgba(0,0,0,0.1);
+}
+
+.login form input{
+    width: 90%;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    border: 1px solid #dddfe2;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+.login form input:focus{
+    border-color: #1877f2;
+    outline: none;
+}
+
+
+.log_button{
+    width: 100%;
+    padding: 14px 0;
+    background: #1877f2;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.log_button:hover{
+    background: #166fe5;
+}
+
+
+.forgot_link{
+    display: block;
+    margin: 16px 0;
+    font-size: 14px;
+    color: #1877f2;
+    text-decoration: none;
+}
+
+.forgot_link:hover{
+    text-decoration: underline;
+}
+
+.separator {
+    height: 1px;
+    background: #dadde1;
+    margin: 18px 0;
+}
+
+.create_button {
+    background: #42b72a;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 14px 0;
+    border: none;
+    border-radius: 6px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.create_button:hover { 
+    background: #36a420;
+}
+
+.link_btm {
+    margin-top: 22px;
+    font-size: 14px;
+}
+
+.link_btm a {
+    font-weight: bold;
+    color: #000;
+    text-decoration: none;
+}
+
+.link_btm a:hover {
+    text-decoration: underline;
+}
