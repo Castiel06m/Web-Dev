@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            padding-top: 60px; 
+        }
+
+        .top_head {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background-color: #222;
+            color: white;
+            display: flex;
+            align-items: center;
+            padding-left: 50px; 
+            z-index: 1000; 
+        }
+
+        .main {
+            max-width: 600px;
+            margin: 40px auto; 
+            text-align: center;
+        }
+
+        .input_group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            width: 70%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .add_btn {
+            padding: 10px 20px;
+            background-color: #337ab7; 
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .add_btn:hover {
+            background-color: #286090;
+        }
+
+        .todo_list {
+            border: 1px solid #eee;
+            border-radius: 5px;
+            text-align: left;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .todo_item {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .todo_item:last-child {
+            border-bottom: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="top_head">
+        To Do List
+    </div>
+
+    <div class="main">
+        <h1>To Do List</h1>
+
+        <div class="input_group">
+            <input type="text" id = "taskInput" placeholder="New Task">
+            <button class="add_btn" id = "addBtn">Add</button>
+        </div>
+
+        <div class="todo_list" id = "todoList"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
