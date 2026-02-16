@@ -1,0 +1,33 @@
+<div class="card">
+  <div class="image-container">
+    <button class="nav-btn prev" (click)="prevImg()">❮</button>
+    
+    <img [src]="product.images[currentImg]" [alt]="product.name" class="product-img">
+    
+    <button class="nav-btn next" (click)="nextImg()">❯</button>
+  </div>
+
+  <div class="product-info">
+    <h3>{{ product.name }}</h3>
+    <p class="description">{{ product.description }}</p>
+    
+    <div class="rating">
+      Рейтинг: ⭐ {{ product.rating }}
+    </div>
+
+    <div class="price">{{ product.price }} KZT</div>
+    
+    <a [href]="product.link" target="_blank" class="kaspi-link">Посмотреть на Kaspi</a>
+
+    <div class="share-actions">
+      <button (click)="shareToWhatsapp()" class="btn-whatsapp">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" class="icon" alt="WA">
+        WhatsApp
+      </button>
+      <button (click)="shareToTelegram()" class="btn-telegram">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" class="icon" alt="TG">
+        Telegram
+      </button>
+    </div>
+  </div>
+</div>
