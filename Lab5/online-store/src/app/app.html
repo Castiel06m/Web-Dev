@@ -1,0 +1,24 @@
+<header class="header">
+  <h1>{{ title }}</h1>
+  
+  <nav class="category-nav">
+    @for (cat of categories; track cat.id) {
+      <button 
+        (click)="selectCategory(cat.id)" 
+        [class.active]="selectedCategoryId === cat.id">
+        {{ cat.name }}
+      </button>
+    }
+  </nav>
+</header>
+
+<main class="container">
+  @if (selectedCategoryId) {
+    <app-product-list [products]="filteredProducts"></app-product-list>
+  } @else {
+    <div class="welcome-screen">
+      <h2>Добро пожаловать в наш магазин!</h2>
+      <p>Пожалуйста, выберите категорию товаров выше, чтобы начать покупки.</p>
+    </div>
+  }
+</main>

@@ -1,0 +1,28 @@
+<div class="product-card">
+  <img [src]="product().image" [alt]="product().name" class="product-image">
+  
+  <h3>{{ product().name }}</h3>
+
+  <p class="description" [class.expanded]="isExpanded"> 
+    {{ product().description }}
+  </p>
+
+  <button class="show-more" (click)="isExpanded = !isExpanded">
+    {{ isExpanded ? 'Скрыть' : 'Подробнее...' }}
+  </button>
+  
+  <div class="info">
+    <span class="price">{{ product().price }} ₸</span>
+    <span class="rating">⭐ {{ product().rating }}</span>
+  </div>
+
+  <div class="likes-section">
+    <button (click)="onLike()" class="like-btn">❤️ {{ product().likes }}</button>
+  </div>
+
+  <div class="actions">
+    <button (click)="share('whatsapp')" class="btn wa">WA</button>
+    <button (click)="share('telegram')" class="btn tg">TG</button>
+    <button (click)="onRemove()" class="btn delete">Удалить</button>
+  </div>
+</div>

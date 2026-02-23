@@ -1,0 +1,16 @@
+<div class="list-container">
+  @if (displayProducts.length > 0) {
+    <div class="products-grid">
+      @for (item of displayProducts; track item.id) {
+        <app-product-item 
+          [product]="item" 
+          (remove)="handleRemove($event)">
+        </app-product-item>
+      }
+    </div>
+  } @else {
+    <div class="empty-msg">
+      <p>В этой категории пока нет товаров (или вы всё удалили 🙃)</p>
+    </div>
+  }
+</div>

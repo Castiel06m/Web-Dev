@@ -1,0 +1,48 @@
+.header {
+  background-color: #f8f9fa;
+  padding: 20px;
+  text-align: center;
+  border-bottom: 2px solid #e0e0e0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+h1 { color: #c82333; margin-bottom: 20px; }
+
+.category-nav {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+button {
+  padding: 10px 20px;
+  border: 1px solid #c82333;
+  background: white;
+  color: #c82333;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+button:hover { background: #fff5f5; }
+
+button.active {
+  background: #c82333;
+  color: white;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.welcome-screen {
+  text-align: center;
+  margin-top: 100px;
+  color: #555;
+}
