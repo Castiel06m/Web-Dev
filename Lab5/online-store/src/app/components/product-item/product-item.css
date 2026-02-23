@@ -12,21 +12,21 @@
 }
 
 h3 {
-  min-height: 3em; /* Зарезервируем место под 2 строки текста */
+  min-height: 3em; 
   margin: 10px 0;
   font-size: 1.1rem;
   overflow: hidden;
 }
 
 .info {
-  margin-top: auto; /* Это "вытолкнет" блок вниз */
+  margin-top: auto; 
   padding-top: 15px;
 }
 
 .actions {
   display: flex;
   gap: 5px;
-  margin-top: 10px; /* Небольшой отступ от цены до кнопок */
+  margin-top: 10px; 
 }
 
 .product-card:hover {
