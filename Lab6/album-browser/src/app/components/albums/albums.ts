@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core'; 
 import { CommonModule } from '@angular/common'; 
 import { RouterModule } from '@angular/router'; 
 import { AlbumService } from '../../services/album'; 
@@ -12,39 +12,32 @@ import { Album } from '../../models/album.model';
   styleUrl: './albums.css',
 })
 export class Albums implements OnInit {
-  albums: Album[] = [];
-  loading = true;
+  albums = signal<Album[]>([]); 
+  loading = signal(true); 
 
-  constructor(
-    private albumService: AlbumService, 
-    private cdr: ChangeDetectorRef 
-  ) {}
+  private albumService = inject(AlbumService);
 
   ngOnInit() {
     this.fetchAlbums();
   }
 
   fetchAlbums() {
-    console.log('Попытка загрузки альбомов...'); 
-    this.loading = true;
+    this.loading.set(true); 
     
     this.albumService.getAlbums().subscribe({
       next: (data) => {
-        console.log('Данные успешно получены:', data); 
-        this.albums = data;
-        this.loading = false;
+        this.albums.set(data); 
+        this.loading.set(false); 
       },
       error: (err) => {
-        console.error('Ошибка при загрузке альбомов:', err); 
-        this.loading = false;
+        console.error(err);
+        this.loading.set(false);
       }
     });
   }
 
   deleteAlbum(id: number) {
-    this.albums = this.albums.filter(a => a.id !== id);
-    this.albumService.deleteAlbum(id).subscribe(() => {
-        this.cdr.detectChanges(); 
-    });
+    this.albums.update(currentAlbums => currentAlbums.filter(a => a.id !== id));
+    this.albumService.deleteAlbum(id).subscribe();
   }
 }

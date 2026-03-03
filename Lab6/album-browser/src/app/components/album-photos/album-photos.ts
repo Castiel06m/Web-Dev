@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { AlbumService } from '../../services/album';
 import { Photo } from '../../models/photo.model';
@@ -7,24 +6,25 @@ import { Photo } from '../../models/photo.model';
 @Component({
   selector: 'app-album-photos',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [RouterModule], 
   templateUrl: './album-photos.html',
   styleUrl: './album-photos.css',
 })
 export class AlbumPhotos implements OnInit {
-  photos: Photo[] = [];
-  loading = true;
+  photos = signal<Photo[]>([]);
+  loading = signal(true);
 
-  constructor(
-    private route: ActivatedRoute,
-    private albumService: AlbumService
-  ) {}
+  private route = inject(ActivatedRoute); 
+  private albumService = inject(AlbumService);
 
   ngOnInit() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.albumService.getAlbumPhotos(id).subscribe(data => {
-      this.photos = data;
-      this.loading = false;
+    this.albumService.getAlbumPhotos(id).subscribe({
+      next: (data) => {
+        this.photos.set(data); 
+        this.loading.set(false);
+      },
+      error: () => this.loading.set(false)
     });
   }
 }

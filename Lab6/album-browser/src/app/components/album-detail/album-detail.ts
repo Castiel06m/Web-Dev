@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms'; 
 import { AlbumService } from '../../services/album';
 import { Album } from '../../models/album.model';
 
@@ -13,28 +13,33 @@ import { Album } from '../../models/album.model';
   styleUrl: './album-detail.css',
 })
 export class AlbumDetail implements OnInit {
-  album!: Album;
-  newTitle: string = '';
+  album = signal<Album | undefined>(undefined); 
+  loading = signal(true);
+  newTitle = signal('');
 
-  constructor(
-    private route: ActivatedRoute,
-    private albumService: AlbumService
-  ) {}
+  private route = inject(ActivatedRoute); 
+  private albumService = inject(AlbumService);
 
   ngOnInit() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    
-    this.albumService.getAlbum(id).subscribe(data => {
-      this.album = data;
-      this.newTitle = data.title;
+    this.albumService.getAlbum(id).subscribe({
+      next: (data) => {
+        this.album.set(data); 
+        this.newTitle.set(data.title);
+        this.loading.set(false);
+      },
+      error: () => this.loading.set(false)
     });
   }
 
   saveChanges() {
-    const updatedAlbum = { ...this.album, title: this.newTitle };
-    this.albumService.updateAlbum(updatedAlbum).subscribe(response => {
-      this.album.title = response.title;
-      alert('Changes saved! (Simulated)');
-    });
+    const currentAlbum = this.album();
+    if (currentAlbum) {
+      const updated = { ...currentAlbum, title: this.newTitle() };
+      this.albumService.updateAlbum(updated).subscribe(res => {
+        this.album.set(res);
+        alert('Saved!');
+      });
+    }
   }
 }
