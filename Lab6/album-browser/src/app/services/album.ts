@@ -8,7 +8,7 @@ import { Photo } from '../models/photo.model';
   providedIn: 'root',
 })
 export class AlbumService { 
-  private baseUrl = 'https://jsonplaceholder.typicode.com';
+  private baseUrl = 'http://jsonplaceholder.typicode.com';
 
   constructor(private http: HttpClient) {}
 

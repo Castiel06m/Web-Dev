@@ -19,7 +19,6 @@ export class ProductList {
     this.displayProducts = this.displayProducts.filter(p => p.id !== id);
   }
 
-  // Следим за обновлением входящих данных
   ngOnChanges() {
     this.displayProducts = this.products();
   }
