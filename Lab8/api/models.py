@@ -22,5 +22,19 @@ class Product(models.Model):
     image = models.TextField(blank=True)
     link = models.TextField(blank=True)  
 
+    def to_json(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'price': self.price,
+            'description': self.description,
+            'count': self.count,
+            'is_active': self.is_active,
+            'rating': self.rating,
+            'likes': self.likes,
+            'image': self.image,
+            'link': self.link
+        }
+
     def __str__(self):
         return self.name
